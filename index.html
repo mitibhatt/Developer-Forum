@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <title>Developer Forum</title>
+    <link rel="stylesheet" href="CSS/bootstrap.css" />
+    <link href="app-content/app.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"/>
+</head>
+<body>
+    <div class= modal-header style="background: royalblue">
+        <h1>Developer Forum</h1>
+    </div>
+        <div class="container">
+            <div class="col-sm-6 col-sm-offset-3">
+        <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+        </div>
+           </div>
+        <div class="jumbotron">
+            <div class="container" ng-view></div>
+        </div>
+    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="//code.angularjs.org/1.2.20/angular.js"></script>
+    <script src="//code.angularjs.org/1.2.20/angular-route.js"></script>
+    <script src="//code.angularjs.org/1.2.13/angular-cookies.js"></script>
+
+    <script src="app.js"></script>
+    <script src="app-services/authenticationService.js"></script>
+    <script src="app-services/flashService.js"></script>
+
+    <!-- Real user service that uses an api -->
+     <script src="app-services/userService.js"></script>
+     <script src="app-services/homeService.js"></script>
+
+    <!--Controllers-->
+    <script src="home/homeController.js"></script>
+    <script src="login/loginController.js"></script>
+    <script src="register/registerController.js"></script>
+    <script src="postQuestion/postQuestionController.js"></script>
+    <script src="postAnswer/postAnswerController.js"></script>
+</body>
+</html>

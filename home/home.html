@@ -1,0 +1,38 @@
+﻿<a href="#/login" class="btn btn-link" style="float:right">Logout</a>
+<h4>Hi {{vm.user}}!</h4>
+<div class="container">
+    <form name="form" ng-submit="vm.getTag()" role="form">
+        <div class="form-group" ng-class="{'has-error': form.ddlTag.$dirty && form.ddlTag.$error.required }">
+            <label for="ddlTag">Tags:</label>
+            <select ng-model="vm.ddlTag" name="ddlTag" id="ddlTag" class="form-control"  ng-options="item.tagId as item.tagName for item in vm.tags" ng-change="vm.getQuestions()" required>  </select>
+            <span ng-show="form.ddlTag.$dirty && form.ddlTag.$error.required" class="help-block">Please select tag</span>
+        </div>
+    <div class="form-actions">
+        <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Post question</button>
+        <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+    </div>
+        <table st-table="rowCollection" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Question</th>
+                <th>Username</th>
+                <th>Total answers</th>
+                <th>Date and time</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in vm.questions">
+                <td>{{row.question | uppercase}}</td>
+                <td>{{row.userName}}</td>
+                <td><a ng-click="vm.answer(row)">{{row.answerCount}}</a></td>
+                <td>{{row.dateTime | date}}</td>
+                <td>
+                    <button type="button" ng-click="vm.answer(row)" class="btn btn-sm btn-danger ">
+                     Post answer
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+</form>
+</div>
